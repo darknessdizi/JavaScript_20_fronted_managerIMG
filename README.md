@@ -4,7 +4,7 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/670f9cdka6n6podq?svg=true)](https://ci.appveyor.com/project/darknessdizi/javascript-20-fronted-managerimg)
 
-Ссылка на страницу: https://github.com/darknessdizi/JavaScript_20_fronted_managerIMG.git
+Ссылка на страницу: https://darknessdizi.github.io/JavaScript_20_fronted_managerIMG/
 
 ---
 
