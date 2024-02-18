@@ -33,16 +33,7 @@ export default class ManagerController {
     const xhr = new XMLHttpRequest();
     const method = 'method=getImages';
 
-    xhr.addEventListener('load', () => {
-      if (xhr.status >= 200 && xhr.status < 300) { // получен ответ
-        const obj = JSON.parse(xhr.responseText);
-        for (const item of Object.entries(obj)) {
-          console.log('item', item)
-          const url = 'http://localhost:9000' + item[1].path;
-          this.edit.createDivImage(item[0], item[1].name, url);
-        }
-      }
-    });
+    xhr.addEventListener('load', this.callbackLoad.bind(this, xhr));
 
     xhr.open('GET', `http://localhost:9000?${method}`);
     xhr.send(); 
@@ -58,15 +49,7 @@ export default class ManagerController {
     const xhr = new XMLHttpRequest();
     const method = 'method=dropImages';
 
-    xhr.addEventListener('load', () => {
-      if (xhr.status >= 200 && xhr.status < 300) { // получен ответ
-        const obj = JSON.parse(xhr.responseText);
-        for (const item of Object.entries(obj)) {
-          const url = 'http://localhost:9000' + item[1].path;
-          this.edit.createDivImage(item[0], item[1].name, url);
-        }
-      }
-    });
+    xhr.addEventListener('load', this.callbackLoad.bind(this, xhr));
 
     xhr.open('POST', `http://localhost:9000?${method}`);
     xhr.send(formData);
@@ -96,22 +79,14 @@ export default class ManagerController {
     const xhr = new XMLHttpRequest();
     const method = 'method=addImages';
 
-    xhr.addEventListener('load', () => {
-      if (xhr.status >= 200 && xhr.status < 300) { // получен ответ
-        const obj = JSON.parse(xhr.responseText);
-        for (const item of Object.entries(obj)) {
-          const url = 'http://localhost:9000' + item[1].path;
-          this.edit.createDivImage(item[0], item[1].name, url);
-        }
-      }
-    });
+    xhr.addEventListener('load', this.callbackLoad.bind(this, xhr));
 
     xhr.open('POST', `http://localhost:9000?${method}`);
     xhr.send(body);
   }
 
   onRemoveClick(event) {
-    // Удаление фотограффии
+    // Удаление фотографии
     const { target } = event;
     const parent = target.closest('.image__conteiner');
     const img = parent.querySelector('img');
@@ -126,5 +101,16 @@ export default class ManagerController {
 
     xhr.open('POST', `http://localhost:9000?${method}`);
     xhr.send();
+  }
+
+  callbackLoad(xhr) {
+    // Callback - при получении ответа от сервера содержащего список фотографий
+    if (xhr.status >= 200 && xhr.status < 300) { // получен ответ
+      const array = JSON.parse(xhr.responseText);
+      for (const obj of array) {
+        const url = 'http://localhost:9000' + obj.path;
+        this.edit.createDivImage(obj.id, obj.name, url);
+      }
+    }
   }
 }

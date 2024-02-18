@@ -24,11 +24,11 @@ export default class ManagerEdit {
     return div;
   }
 
-  async createDivImage(id, name, url) {
+  createDivImage(id, name, url) {
     // Создает один блок с фотограффией
     const img = document.createElement('img');
     img.classList.add('image');
-    await img.setAttribute('src', url);
+    img.setAttribute('src', url);
     img.setAttribute('alt', name);
     img.setAttribute('title', name);
     img.setAttribute('id', id);
