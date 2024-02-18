@@ -1,12 +1,26 @@
 # Домашнее задание к занятию "7. Работа с HTTP"
 
+## Fronted
+
+[![Build status](https://ci.appveyor.com/api/projects/status/670f9cdka6n6podq?svg=true)](https://ci.appveyor.com/project/darknessdizi/javascript-20-fronted-managerimg)
+
+Ссылка на страницу: https://github.com/darknessdizi/JavaScript_20_fronted_managerIMG.git
+
+---
+
+## Backend
+
+Ссылка на git-hub репозиторий (backend): https://github.com/darknessdizi/JavaScript_20_server_backend_managerIMG.git
+
+---
+
 Правила сдачи задания:
 
 1. **Важно**: в рамках этого ДЗ нужно использовать npm (а значит, никакого `yarn.lock` в репозитории быть не должно)
-1. Frontend должен собираться через Webpack (включая картинки и стили) и выкладываться на Github Pages через Appveyor
-1. В README.md должен быть размещён бейджик сборки и ссылка на Github Pages
-1. В качестве результата присылайте проверяющему ссылки на ваши GitHub-проекты
-1. Авто-тесты писать не требуется
+2. Frontend должен собираться через Webpack (включая картинки и стили) и выкладываться на Github Pages через Appveyor
+3. В README.md должен быть размещён бейджик сборки и ссылка на Github Pages
+4. В качестве результата присылайте проверяющему ссылки на ваши GitHub-проекты
+5. Авто-тесты писать не требуется
 
 ### Image Manager (задача со звёздочкой)
 
