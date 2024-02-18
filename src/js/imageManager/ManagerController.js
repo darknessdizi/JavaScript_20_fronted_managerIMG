@@ -8,7 +8,7 @@ export default class ManagerController {
     this.edit.addClickConteinerListeners(ManagerController.onClickConteiner.bind(this));
     this.edit.addChangeInputListeners(this.onChangeInput.bind(this));
     this.edit.addSubmitFormListeners(this.onSubmitForm.bind(this));
-    this.edit.addRemoveListeners(this.onRemoveClick.bind(this));
+    this.edit.addRemoveListeners(ManagerController.onRemoveClick);
 
     this.getImagesFromServer();
 
@@ -36,14 +36,14 @@ export default class ManagerController {
     xhr.addEventListener('load', this.callbackLoad.bind(this, xhr));
 
     xhr.open('GET', `http://localhost:9000?${method}`);
-    xhr.send(); 
+    xhr.send();
   }
 
   dropFiles(files) {
     // Отправка формы
     const formData = new FormData();
     for (const file of files) {
-      const name = file.name;
+      const { name } = file;
       formData.append('file', file, name);
     }
     const xhr = new XMLHttpRequest();
@@ -73,7 +73,7 @@ export default class ManagerController {
     cell.value = ''; // Чтобы повторно открывать один и тот же файл
   }
 
-  onSubmitForm(event) {
+  onSubmitForm() {
     // Отправка формы
     const body = new FormData(this.edit.conteiner); // Считывает поля name у элементов
     const xhr = new XMLHttpRequest();
@@ -85,7 +85,7 @@ export default class ManagerController {
     xhr.send(body);
   }
 
-  onRemoveClick(event) {
+  static onRemoveClick(event) {
     // Удаление фотографии
     const { target } = event;
     const parent = target.closest('.image__conteiner');
@@ -108,7 +108,7 @@ export default class ManagerController {
     if (xhr.status >= 200 && xhr.status < 300) { // получен ответ
       const array = JSON.parse(xhr.responseText);
       for (const obj of array) {
-        const url = 'http://localhost:9000' + obj.path;
+        const url = `http://localhost:9000${obj.path}`;
         this.edit.createDivImage(obj.id, obj.name, url);
       }
     }
